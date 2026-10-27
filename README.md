@@ -53,6 +53,26 @@ All data lives in `~/.bemtevi/` as plain JSON and audio files. No account, no se
 
 Override the data directory with `BEMTEVI_DIR` for testing or custom locations.
 
+## Privacy
+
+bemtevi has no account, no analytics and no crash reporting. Your recordings never leave your machine.
+
+What it keeps, all under `~/.bemtevi/`: a copy of each recording you file, each song's details (title, artist, key, sections, chords, notes, status, tags), the lyrics you fetched or pasted, and one HTML page per song plus the repertoire.
+
+What it reads on your machine: new audio files in `~/Downloads` when you run `/bemtevi:song add` (names and lengths, to pair them; on macOS the length comes from `afinfo`), and, once, the songs in `~/.oliba` to copy them over.
+
+This request goes out:
+
+- **LRCLIB** ([lrclib.net](https://lrclib.net)): the song's title and artist, to search for lyrics, then the id of the lyrics you pick. It also sees bemtevi's version in the request's user agent. Nothing else about you or your recordings. Paste the lyrics yourself and bemtevi sends nothing at all.
+
+The pages load nothing from the web: no fonts, no scripts, no trackers. They work offline.
+
+## Using bemtevi fairly
+
+- **Your teacher's recordings are for your practice.** Keep them, and the pages that play them, to yourself. Ask your teacher before you pass a song's folder on, even to a friend in the same class.
+- **Lyrics are for your own study.** They come from a free community database, so don't publish them from your songbook.
+- **Chords you paste stay yours.** If you copied a cifra from a site, it stays on your machine with the song.
+
 ## Acknowledgements
 
 Song lyrics come from [LRCLIB](https://lrclib.net) by tranxuanthang and its contributors: a free, open lyrics database with an open API. The player is a native `<audio>` element.
