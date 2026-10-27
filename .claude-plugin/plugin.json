@@ -1,6 +1,6 @@
 {
   "name": "bemtevi",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Practice pages for singers with a teacher, in Claude Code. File the teacher's guide and backing recordings as one local page per song: switch between them at the same spot, loop a section, slow down without changing pitch, lyrics lit line by line. Local-first, anti-guilt.",
   "author": {
     "name": "EquanimiTech",
