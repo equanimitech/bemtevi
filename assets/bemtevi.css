@@ -1,0 +1,264 @@
+/* bemtevi stylesheet. Inlined into every page by `cli.mjs`,
+   so a song page works offline and can be sent as a folder.
+   No web fonts, no remote images, no imports: nothing is fetched. */
+
+:root {
+  --paper: #fbf8f2;
+  --ink: #26221d;
+  --muted: #6d655a;
+  --rule: #e4dccd;
+  --accent: #8a5a2b;   /* barn-owl umber */
+  --wash: #f3ecdf;
+  --right: #2f6b3a;
+  --right-wash: #e6f1e4;
+  --wrong: #9c3b2e;
+  --wrong-wash: #f7e5e1;
+  --measure: 38rem;
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #1c1a17;
+    --ink: #ece6da;
+    --muted: #a69d8f;
+    --rule: #3a352e;
+    --accent: #d9a46c;
+    --wash: #26231f;
+    --right: #8fcb95;
+    --right-wash: #1f2e21;
+    --wrong: #eb9a8c;
+    --wrong-wash: #33211d;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 3rem 1rem 5rem;
+  background: var(--paper);
+  color: var(--ink);
+  font: 1.0625rem/1.65 Charter, "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  -webkit-text-size-adjust: 100%;
+}
+
+main { max-width: var(--measure); margin: 0 auto; }
+
+h1, h2, h3 { line-height: 1.25; font-weight: 600; }
+h1 { font-size: 1.9rem; margin: 0 0 .5rem; }
+h2 { font-size: 1.3rem; margin: 2.5rem 0 .5rem; padding-top: 1rem; border-top: 1px solid var(--rule); }
+h3 { font-size: 1.05rem; margin: 1.75rem 0 .25rem; }
+
+.mission, .kicker {
+  color: var(--muted);
+  font: .85rem/1.4 system-ui, sans-serif;
+  letter-spacing: .02em;
+  margin: 0 0 1.5rem;
+}
+
+a { color: var(--accent); text-underline-offset: .15em; }
+a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+code, kbd, .formula { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: .9em; }
+.formula {
+  display: block;
+  margin: 1.25rem 0;
+  padding: .9rem 1rem;
+  background: var(--wash);
+  border-left: 3px solid var(--accent);
+  overflow-x: auto;
+}
+
+/* A domain term kept in its own language, with its gloss beside it. */
+.term { font-style: italic; }
+.gloss { color: var(--muted); }
+
+aside, .note {
+  margin: 1.5rem 0;
+  padding: .75rem 1rem;
+  background: var(--wash);
+  border-radius: 6px;
+  font-size: .95rem;
+}
+
+table { border-collapse: collapse; width: 100%; margin: 1.25rem 0; font-size: .95rem; }
+th, td { text-align: left; vertical-align: top; padding: .45rem .6rem; border-bottom: 1px solid var(--rule); }
+th { font: 600 .8rem/1.3 system-ui, sans-serif; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+
+/* Think first: a question from the sitting, its answer behind a reveal. */
+.think {
+  margin: 1.25rem 0;
+  padding: .75rem 1rem;
+  border-left: 3px solid var(--accent);
+}
+.think > p:first-child { margin-top: 0; font-weight: 600; }
+.think details { color: var(--muted); }
+.think details[open] { color: var(--ink); }
+.think summary { cursor: pointer; font: .85rem/1.4 system-ui, sans-serif; color: var(--accent); }
+
+/* Contrast: the tempting wrong model beside the right one. */
+aside.contrast { display: grid; gap: .5rem; }
+aside.contrast p { margin: 0; padding-left: 1.4rem; position: relative; }
+aside.contrast .wrong::before { content: "✗"; position: absolute; left: 0; color: var(--wrong); }
+aside.contrast .right::before { content: "✓"; position: absolute; left: 0; color: var(--right); }
+aside.contrast .wrong { color: var(--muted); }
+
+/* Quizzes: <fieldset class="quiz" data-answer="…">, one <details> fallback each. */
+fieldset.quiz {
+  margin: 1.75rem 0;
+  padding: 1rem 1.1rem 1.1rem;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+}
+fieldset.quiz legend { padding: 0 .35rem; font-weight: 600; }
+fieldset.quiz button {
+  display: block;
+  width: 100%;
+  margin: .5rem 0 0;
+  padding: .6rem .8rem;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+  background: transparent;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  cursor: pointer;
+}
+fieldset.quiz button:hover { background: var(--wash); }
+fieldset.quiz input {
+  font: inherit;
+  color: inherit;
+  background: transparent;
+  padding: .45rem .6rem;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  margin-top: .5rem;
+}
+fieldset.quiz input + button { display: inline-block; width: auto; margin-left: .4rem; }
+fieldset.quiz .right { border-color: var(--right); background: var(--right-wash); }
+fieldset.quiz .wrong { border-color: var(--wrong); background: var(--wrong-wash); }
+fieldset.quiz output { display: block; margin-top: .75rem; min-height: 1.2em; }
+fieldset.quiz output.right { color: var(--right); background: none; }
+fieldset.quiz output.wrong { color: var(--wrong); background: none; }
+fieldset.quiz details { margin-top: .75rem; color: var(--muted); font-size: .92rem; }
+fieldset.quiz summary { cursor: pointer; }
+
+/* The closing line that hands the learner back to the terminal. */
+.ask {
+  margin-top: 3rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--rule);
+  color: var(--muted);
+  font-size: .95rem;
+}
+
+/* Save my results: one button, then the copied /study prompt, selectable. */
+footer.save { margin-top: 2rem; }
+footer.save button {
+  font: .95rem/1.3 system-ui, sans-serif;
+  color: var(--paper);
+  background: var(--accent);
+  border: 0;
+  border-radius: 6px;
+  padding: .55rem .9rem;
+  cursor: pointer;
+}
+footer.save output { display: block; margin-top: .75rem; color: var(--muted); font-size: .9rem; }
+footer.save button.copy-instead {
+  font: inherit;
+  color: var(--accent);
+  background: none;
+  padding: 0 .25rem;
+  text-decoration: underline;
+  text-underline-offset: .15em;
+}
+footer.save code.prompt { user-select: all; word-break: break-all; background: var(--wash); padding: .15rem .35rem; }
+
+/* Lesson index and glossary lists. */
+ol.lessons { padding-left: 1.5rem; }
+ol.lessons li { margin: .4rem 0; }
+dl.glossary dt { font-weight: 600; margin-top: 1.1rem; }
+dl.glossary dd { margin: .15rem 0 0 1rem; }
+.avoid { color: var(--muted); font-size: .9rem; }
+
+/* Song pages: the player sticks to the top with every control, the lyrics read
+   big below it (beside the cifra and notes on a wide screen). */
+main[data-type="song"] { max-width: 60rem; }
+.song { display: grid; gap: 0 2.5rem; }
+@media (min-width: 56rem) {
+  .song { grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); align-items: start; }
+}
+.song h2 { margin-top: 1.5rem; }
+bemtevi-player {
+  display: block;
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
+  z-index: 1;
+  background: var(--paper);
+  border-bottom: 1px solid var(--rule);
+  padding: .25rem 0;
+}
+bemtevi-player figure { margin: .5rem 0; }
+bemtevi-player figcaption { font: .85rem/1.4 system-ui, sans-serif; color: var(--muted); margin-bottom: .35rem; }
+bemtevi-player audio { width: 100%; }
+bemtevi-player p { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; margin: .5rem 0; font: .9rem/1.4 system-ui, sans-serif; }
+bemtevi-player p[hidden] { display: none; }
+bemtevi-player select { font: inherit; color: inherit; background: transparent; border: 1px solid var(--rule); border-radius: 6px; padding: .35rem .5rem; max-width: 100%; }
+bemtevi-player input.follow { accent-color: var(--accent); }
+bemtevi-player span.offset { display: inline-flex; gap: .35rem; align-items: center; color: var(--muted); }
+bemtevi-player span.offset[hidden] { display: none; }
+bemtevi-player output.offset { font-variant-numeric: tabular-nums; min-width: 5ch; text-align: center; }
+bemtevi-player button {
+  font: .9rem/1.3 system-ui, sans-serif;
+  color: inherit;
+  background: transparent;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: .4rem .7rem;
+  cursor: pointer;
+}
+bemtevi-player button:hover { background: var(--wash); }
+bemtevi-player button[aria-pressed="true"] { border-color: var(--accent); background: var(--wash); color: var(--accent); }
+bemtevi-player output.clock { font: 600 1.4rem/1 ui-monospace, "SF Mono", Menlo, monospace; min-width: 6ch; }
+bemtevi-player input.rate { accent-color: var(--accent); }
+bemtevi-player output.range { color: var(--muted); font-family: ui-monospace, "SF Mono", Menlo, monospace; }
+/* On a phone the player stays short: labels go to screen readers only. */
+@media (max-width: 40rem) {
+  bemtevi-player p { gap: .35rem; margin: .35rem 0; }
+  bemtevi-player figure { margin: .35rem 0; }
+  bemtevi-player button { padding: .3rem .55rem; }
+  bemtevi-player output.clock { font-size: 1.1rem; }
+  bemtevi-player .lbl { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+}
+.song pre { white-space: pre-wrap; font: .95rem/1.6 ui-monospace, "SF Mono", Menlo, monospace; }
+/* The lyric sheet: a reading size, stanzas apart. */
+.lyrics .lrc p, .song .lyrics pre { font: clamp(1.35rem, 1.1rem + 1vw, 1.6rem)/1.5 Charter, "Iowan Old Style", "Palatino Linotype", Georgia, serif; }
+.lrc p { margin: 0; padding: .05rem .4rem; border-radius: 4px; min-height: 1.5em; }
+.lrc p.gap { margin-top: 1.1em; }
+.lrc p.now { background: var(--wash); color: var(--accent); }
+.lyrics.following .lrc p { cursor: pointer; }
+ul.songs { padding-left: 1.2rem; }
+ul.songs li { margin: .4rem 0; }
+.tags { font: .8rem/1.4 system-ui, sans-serif; color: var(--muted); }
+ul.songs .tags::before, .mission .tags::before { content: "· "; }
+
+/* Home index: projects under their tags; archived projects, and stored songs, folded away. */
+section.project h3 { margin-top: 1.25rem; }
+details.archived, details.stored { margin-top: 2.5rem; padding-top: 1rem; border-top: 1px solid var(--rule); }
+details.archived summary, details.stored summary { cursor: pointer; font: .9rem/1.4 system-ui, sans-serif; color: var(--muted); }
+
+@media print {
+  body { background: #fff; color: #000; padding: 0; font-size: 11pt; }
+  fieldset.quiz button, fieldset.quiz input, fieldset.quiz output, footer.save { display: none; }
+  bemtevi-player { display: none; }
+  fieldset.quiz details { color: #000; }
+  a { color: #000; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  fieldset.quiz button { transition: background-color .15s, border-color .15s; }
+}

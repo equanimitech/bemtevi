@@ -1,0 +1,15 @@
+{
+  "name": "bemtevi",
+  "description": "bemtevi, practice pages for singers in Claude Code, as its own marketplace.",
+  "owner": {
+    "name": "EquanimiTech",
+    "url": "https://equanimi.tech"
+  },
+  "plugins": [
+    {
+      "name": "bemtevi",
+      "source": "./",
+      "description": "Practice pages for singers with a teacher: guide and backing at the same spot, loops, slowdown, lyrics lit line by line."
+    }
+  ]
+}

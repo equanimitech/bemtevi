@@ -1,0 +1,20 @@
+{
+  "name": "bemtevi",
+  "version": "0.1.0",
+  "description": "Practice pages for singers with a teacher, in Claude Code. File the teacher's guide and backing recordings as one local page per song: switch between them at the same spot, loop a section, slow down without changing pitch, lyrics lit line by line. Local-first, anti-guilt.",
+  "author": {
+    "name": "EquanimiTech",
+    "url": "https://equanimi.tech"
+  },
+  "homepage": "https://github.com/equanimitech/bemtevi",
+  "repository": "https://github.com/equanimitech/bemtevi",
+  "license": "MIT",
+  "keywords": [
+    "singing",
+    "music-practice",
+    "lyrics",
+    "calm-technology",
+    "equanimitech",
+    "bemtevi"
+  ]
+}
